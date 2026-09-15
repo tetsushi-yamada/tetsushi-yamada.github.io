@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>山田哲士</title>
+<meta name="description" content="山田哲士 / Tetsushi Yamada。東京大学 計数工学科。音声・音響とAI、Kotoriva（旧TransPods）を作っています。">
+<meta property="og:title" content="山田哲士 / Tetsushi Yamada">
+<meta property="og:description" content="東京大学 計数工学科。音声・音響とAI、Kotoriva を作っています。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tetsushi-yamada.github.io/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@yamatetsu0703">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23101a20'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='%23f1f4f3' font-family='serif' font-weight='700'%3E哲%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=IBM+Plex+Sans+JP:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #f1f4f3;
+    --surface: #ffffff;
+    --ink: #101a20;
+    --muted: #5d6b71;
+    --line: #d5dcdb;
+    --accent: #0e7c86;
+    --accent-ink: #ffffff;
+    --wave: rgba(14, 124, 134, 0.55);
+    --wave-2: rgba(16, 26, 32, 0.18);
+    --now: #d9822b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1114;
+      --surface: #121a1e;
+      --ink: #e8eef0;
+      --muted: #8b9ba1;
+      --line: #22303a;
+      --accent: #3ec1cc;
+      --accent-ink: #06181b;
+      --wave: rgba(62, 193, 204, 0.6);
+      --wave-2: rgba(232, 238, 240, 0.14);
+      --now: #e8a34f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1114;
+    --surface: #121a1e;
+    --ink: #e8eef0;
+    --muted: #8b9ba1;
+    --line: #22303a;
+    --accent: #3ec1cc;
+    --accent-ink: #06181b;
+    --wave: rgba(62, 193, 204, 0.6);
+    --wave-2: rgba(232, 238, 240, 0.14);
+    --now: #e8a34f;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans JP", "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  .page {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 0 20px 64px;
+  }
+
+  /* ---- waveform header ---- */
+  .wave {
+    position: relative;
+    height: 150px;
+    margin: 0 -20px;
+  }
+  .wave canvas { width: 100%; height: 100%; display: block; }
+  .wave .tag {
+    position: absolute;
+    left: 20px; bottom: 10px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+  }
+
+  /* ---- identity ---- */
+  .id {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 18px;
+    align-items: center;
+    margin-top: 8px;
+  }
+  .mono {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--bg);
+    display: grid; place-items: center;
+    font-family: "Shippori Mincho", "Hiragino Mincho ProN", serif;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 1;
+    user-select: none;
+  }
+  h1 {
+    margin: 0;
+    font-family: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+  }
+  .romaji {
+    margin: 4px 0 0;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .bio {
+    margin: 22px 0 0;
+    max-width: 34em;
+    text-wrap: pretty;
+  }
+  .bio p { margin: 0 0 8px; }
+  .bio strong { font-weight: 500; }
+
+  .now {
+    display: flex; gap: 10px; align-items: baseline;
+    margin: 18px 0 0;
+    padding: 12px 14px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  .now .dot {
+    flex: none;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--now);
+    position: relative; top: -1px;
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--now) 22%, transparent);
+  }
+  .now .k {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 0.12em; color: var(--muted);
+    flex: none;
+  }
+
+  /* ---- links ---- */
+  .links { margin: 36px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+  .links li { border-bottom: 1px solid var(--line); }
+  .links a {
+    display: grid;
+    grid-template-columns: 84px 1fr auto;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 6px;
+    transition: background 160ms ease, padding-left 160ms ease;
+  }
+  .links a:hover { background: var(--surface); padding-left: 12px; }
+  .links .cat {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 0.12em; color: var(--muted);
+  }
+  .links .t { font-weight: 500; font-size: 16px; }
+  .links .s { display: block; font-size: 12.5px; color: var(--muted); margin-top: 1px; }
+  .links .arrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    color: var(--accent);
+    font-size: 14px;
+    transition: transform 160ms ease;
+  }
+  .links a:hover .arrow { transform: translateX(3px); }
+
+  .group { margin: 28px 0 0; }
+  .group h2 {
+    margin: 0 0 6px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-weight: 500;
+    font-size: 11px; letter-spacing: 0.16em; color: var(--muted);
+  }
+  .group .links { margin-top: 0; }
+
+  footer {
+    margin-top: 44px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: 0.08em;
+    color: var(--muted);
+    display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+
+  @media (max-width: 420px) {
+    .links a { grid-template-columns: 1fr auto; }
+    .links .cat { grid-column: 1 / -1; margin-bottom: -8px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .links a, .links .arrow { transition: none; }
+  }
+</style>
+
+</head>
+<body>
+<div class="page">
+  <div class="wave">
+    <canvas id="wave" aria-hidden="true"></canvas>
+    <span class="tag">SPEECH / PODCAST / MATH ENG</span>
+  </div>
+
+  <header class="id">
+    <div class="mono" aria-hidden="true">哲</div>
+    <div>
+      <h1>山田哲士</h1>
+      <p class="romaji">Tetsushi Yamada</p>
+    </div>
+  </header>
+
+  <section class="bio">
+    <p>東京大学 工学部 計数工学科。音声・音響とAIをやっています。2027年4月から情報理工学系研究科 システム情報学専攻へ。</p>
+    <p><strong>Kotoriva（旧 TransPods）</strong>を作っています。ポッドキャストの配信・制作を支援するプラットフォームで、2026年度 未踏アドバンストに採択されました。</p>
+  </section>
+
+  <div class="now">
+    <span class="dot" aria-hidden="true"></span>
+    <span class="k">NOW</span>
+    <span>Kotoriva Studio のプロトタイプ開発中。10/19 のプレリリースに向けて。</span>
+  </div>
+
+  <div class="group">
+    <h2>SOCIAL</h2>
+    <ul class="links">
+      <li><a href="https://x.com/yamatetsu0703" target="_blank" rel="noopener">
+        <span class="cat">X</span>
+        <span><span class="t">@yamatetsu0703</span><span class="s">日々のことと、開発の進捗</span></span>
+        <span class="arrow">→</span></a></li>
+      <li><a href="https://www.instagram.com/tetsu_07_03/" target="_blank" rel="noopener">
+        <span class="cat">INSTAGRAM</span>
+        <span><span class="t">@tetsu_07_03</span><span class="s">写真</span></span>
+        <span class="arrow">→</span></a></li>
+      <li><a href="https://github.com/tetsushi-yamada" target="_blank" rel="noopener">
+        <span class="cat">GITHUB</span>
+        <span><span class="t">tetsushi-yamada</span><span class="s">コード</span></span>
+        <span class="arrow">→</span></a></li>
+      <li><a href="https://www.linkedin.com/in/tetsushi-yamada-412888371/" target="_blank" rel="noopener">
+        <span class="cat">LINKEDIN</span>
+        <span><span class="t">Tetsushi Yamada</span><span class="s">経歴</span></span>
+        <span class="arrow">→</span></a></li>
+    </ul>
+  </div>
+
+  <footer>
+    <span>© 2026 Tetsushi Yamada</span>
+    <span>Tokyo, JP</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var canvas = document.getElementById('wave');
+  var ctx = canvas.getContext('2d');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var pointerX = -1;
+  var t = 0;
+
+  function css(name) {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  }
+
+  function resize() {
+    var dpr = window.devicePixelRatio || 1;
+    var w = canvas.clientWidth, h = canvas.clientHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function amp(x, w) {
+    // envelope: quiet at edges, louder in the middle, plus a pointer bump
+    var e = Math.sin((x / w) * Math.PI);
+    var bump = pointerX < 0 ? 0 : Math.exp(-Math.pow((x - pointerX) / 60, 2)) * 1.4;
+    return e + bump;
+  }
+
+  function line(w, h, color, width, freq, phase, gain) {
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = width;
+    for (var x = 0; x <= w; x += 2) {
+      var a = amp(x, w) * gain;
+      var y = h / 2
+        + Math.sin(x * freq + phase + t) * a * 22
+        + Math.sin(x * freq * 2.7 - phase - t * 1.6) * a * 7;
+      if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  }
+
+  function draw() {
+    var w = canvas.clientWidth, h = canvas.clientHeight;
+    ctx.clearRect(0, 0, w, h);
+    ctx.lineCap = 'round';
+    line(w, h, css('--wave-2'), 1, 0.026, 1.2, 0.9);
+    line(w, h, css('--wave-2'), 1, 0.019, 2.9, 0.7);
+    line(w, h, css('--wave'), 1.6, 0.022, 0, 1);
+    if (!reduce) { t += 0.016; requestAnimationFrame(draw); }
+  }
+
+  canvas.addEventListener('pointermove', function (e) {
+    pointerX = e.clientX - canvas.getBoundingClientRect().left;
+    if (reduce) draw();
+  });
+  canvas.addEventListener('pointerleave', function () { pointerX = -1; if (reduce) draw(); });
+  window.addEventListener('resize', function () { resize(); if (reduce) draw(); });
+
+  resize();
+  draw();
+})();
+</script>
+</body>
+</html>
