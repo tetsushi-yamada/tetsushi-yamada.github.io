@@ -191,6 +191,23 @@
   }
   .group .links { margin-top: 0; }
 
+  /* ---- history ---- */
+  .hist { margin: 0; padding: 0; display: grid; grid-template-columns: 112px 1fr; border-top: 1px solid var(--line); }
+  .hist > div { padding: 12px 6px; border-bottom: 1px solid var(--line); }
+  .hist .y {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12px; letter-spacing: 0.06em; color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.6; padding-top: 14px;
+  }
+  .hist .d { font-size: 15px; }
+  .hist .d .s { display: block; font-size: 12.5px; color: var(--muted); margin-top: 1px; }
+  @media (max-width: 420px) {
+    .hist { grid-template-columns: 1fr; }
+    .hist .y { padding-bottom: 0; border-bottom: none; }
+    .hist .d { padding-top: 2px; }
+  }
+
   footer {
     margin-top: 44px;
     font-family: "IBM Plex Mono", ui-monospace, monospace;
@@ -264,7 +281,39 @@
         <span class="cat">IPA</span>
         <span><span class="t">未踏アドバンスト 2026年度上期</span><span class="s">ポッドキャストのながら学習体験を最適化する学習基盤開発（プロジェクト概要）</span></span>
         <span class="arrow">→</span></a></li>
+      <li><a href="https://www.uttc.dev/" target="_blank" rel="noopener">
+        <span class="cat">COMMUNITY</span>
+        <span><span class="t">UTokyo Tech Club</span><span class="s">東大発のエンジニア組織。2024.12–2025.12 代表</span></span>
+        <span class="arrow">→</span></a></li>
     </ul>
+  </div>
+
+  <div class="group">
+    <h2>EXPERIENCE</h2>
+    <dl class="hist">
+      <div class="y">2026.09</div>
+      <div class="d">日本音響学会 2026年秋季研究発表会<span class="s">ポスター発表（日本語感情音声の自然性評価）</span></div>
+      <div class="y">2026.06 –</div>
+      <div class="d">未踏アドバンスト 2026年度上期 採択<span class="s">ポッドキャストのながら学習体験を最適化する学習基盤開発</span></div>
+      <div class="y">2024.12 – 2025.12</div>
+      <div class="d">UTokyo Tech Club 代表<span class="s">東大発のエンジニア組織</span></div>
+    </dl>
+  </div>
+
+  <div class="group">
+    <h2>EDUCATION</h2>
+    <dl class="hist">
+      <div class="y">2027.04 –</div>
+      <div class="d">東京大学大学院 情報理工学系研究科 システム情報学専攻<span class="s">進学予定</span></div>
+      <div class="y">2024 – 現在</div>
+      <div class="d">東京大学 工学部 計数工学科</div>
+      <div class="y">2022 – 2024</div>
+      <div class="d">東京大学 教養学部 前期課程 理科一類</div>
+      <div class="y">2019 – 2022</div>
+      <div class="d">駒場東邦高等学校</div>
+      <div class="y">2016 – 2019</div>
+      <div class="d">駒場東邦中学校</div>
+    </dl>
   </div>
 
   <footer>
